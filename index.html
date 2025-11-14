@@ -1,135 +1,357 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Vibe Check - Rekomendasi Kuliner Kekinian</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Food Vibe Check — Rekomendasi Kuliner Kekinian</title>
+    <meta name="description" content="Food Vibe Check: rekomendasi kuliner, ulasan jujur, dan peta interaktif untuk menemukan vibe makan terbaik di kotamu." />
+    <meta name="author" content="Food Vibe Check" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Food Vibe Check — Rekomendasi Kuliner Kekinian" />
+    <meta property="og:description" content="Temukan rekomendasi makanan hits, review influencer, dan peta lokasi kuliner terbaik." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="og-image.jpg" />
+    <link rel="icon" href="favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <!-- Structured Data (LocalBusiness simplified) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Food Vibe Check",
+      "url": "https://example.com",
+      "description": "Rekomendasi kuliner, review, dan peta lokasi",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Food Vibe Check"
+      }
+    }
+    </script>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">Food Vibe Check</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#rekomendasi">Rekomendasi</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#lokasi">Peta Kuliner</a></li>
-            </ul>
-        </nav>
+    <a class="skip-link" href="#main">Lewati ke konten</a>
+
+    <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <div class="brand">
+                <button id="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Buka menu">
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <a href="#" class="logo">Food Vibe Check</a>
+            </div>
+
+            <nav id="primary-nav" class="primary-nav" role="navigation" aria-label="Navigasi utama">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#rekomendasi">Rekomendasi</a></li>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#lokasi">Peta</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button id="dark-toggle" aria-pressed="false" title="Toggle dark mode" aria-label="Aktifkan mode gelap"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
     </header>
 
-    <section id="home" class="hero-section">
-        <div class="hero-content">
-            <h1>Temukan *Vibe* Makan Terbaikmu Hari Ini!</h1>
-            <p>Jelajahi rasa otentik, tempat *hits*, dan ulasan jujur dari para *Food Influencer*.</p>
-            <a href="#rekomendasi" class="cta-button">Cek Rekomendasi!</a>
-        </div>
+    <main id="main">
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h1>Temukan <span class="accent">Vibe</span> Makan Terbaikmu</h1>
+                    <p class="lead">Jelajahi rasa otentik, tempat hits, dan ulasan jujur dari para food influencer di kotamu.</p>
+                    <div class="hero-cta">
+                        <a href="#rekomendasi" class="btn primary">Lihat Rekomendasi</a>
+                        <a href="#lokasi" class="btn ghost">Lihat Peta</a>
+                    </div>
+                </div>
+                <figure class="hero-media" role="img" aria-label="Piring makanan lezat">
+                    <img src="placeholder-latar-belakang-makanan.jpg" alt="Piring makanan lezat" loading="lazy">
+                </figure>
+            </div>
         </section>
 
-    <section id="rekomendasi" class="rekomendasi-grid">
-        <h2 class="section-title">✨ *Top Picks* Minggu Ini</h2>
-        
-        <article class="food-card">
-            <div class="card-image" style="background-image: url('mie-legend.jpg');"></div>
-            <div class="card-body">
-                <h3>Mie Legend Abadi</h3>
-                <p class="description">Kuah kaya rempah yang bikin nagih! Tekstur mie yang kenyal sempurna. **Wajib Coba!**</p>
-                <div class="info-group">
-                    <p><i class="fas fa-map-marker-alt"></i> **Lokasi:** Jl. Rasa Bahagia No. 12</p>
-                    <p><i class="fas fa-star"></i> **Rating:** 4.8/5 (Dari 350 ulasan)</p>
-                    <p><i class="fas fa-pepper-hot"></i> **Rasa Kunci:** Umami & Gurih Pedas</p>
+        <!-- REKOMENDASI with search + grid -->
+        <section id="rekomendasi" class="section rekomendasi">
+            <div class="container">
+                <div class="section-header">
+                    <h2>✨ Top Picks Minggu Ini</h2>
+                    <div class="controls">
+                        <input id="search" type="search" placeholder="Cari: nama, rasa, lokasi..." aria-label="Cari rekomendasi">
+                        <select id="filter-rating" aria-label="Filter rating">
+                            <option value="all">Semua Rating</option>
+                            <option value="4.5">4.5+</option>
+                            <option value="4.8">4.8+</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="influencer-visit">
-                    <p>**Pernah Dikunjungi:** <a href="#" target="_blank">@JagoMakanID</a></p>
-                    <p><i class="fas fa-quote-left"></i> "Mie terenak yang pernah gue coba! *Approved!*"</p>
-                </div>
-                <button class="detail-button">Lihat Lokasi</button>
-            </div>
-            </article>
 
-        <article class="food-card">
-            <div class="card-image" style="background-image: url('roti-bakar.jpg');"></div>
-            <div class="card-body">
-                <h3>Roti Bakar Nostalgia 90an</h3>
-                <p class="description">Manis, lembut, dengan sentuhan *butter* yang meleleh. Rasa yang membawa kembali kenangan indah masa lalu!</p>
-                <div class="info-group">
-                    <p><i class="fas fa-map-marker-alt"></i> **Lokasi:** Gang Kopi Senja No. 5</p>
-                    <p><i class="fas fa-star"></i> **Rating:** 4.5/5 (Dari 120 ulasan)</p>
-                    <p><i class="fas fa-coffee"></i> **Rasa Kunci:** Manis & *Smokey*</p>
-                </div>
-                <div class="influencer-visit">
-                    <p>**Pernah Dikunjungi:** <a href="#" target="_blank">@JelajahRasaEnak</a></p>
-                    <p><i class="fas fa-quote-left"></i> "Tempat *ngopi* dan *nongkrong* terbaik, rotinya *comfort food* banget!"</p>
-                </div>
-                <button class="detail-button">Lihat Lokasi</button>
-            </div>
-            </article>
-        
-        <article class="food-card">
-            <div class="card-image" style="background-image: url('dessert-matcha.jpg');"></div>
-            <div class="card-body">
-                <h3>Matcha Lava Toast</h3>
-                <p class="description">Paduan pahit-manis Matcha premium dengan lelehan cokelat putih. Sensasi dingin yang menyegarkan!</p>
-                <div class="info-group">
-                    <p><i class="fas fa-map-marker-alt"></i> **Lokasi:** Mall Foodcourt Lantai 3</p>
-                    <p><i class="fas fa-star"></i> **Rating:** 4.9/5 (Dari 600 ulasan)</p>
-                    <p><i class="fas fa-leaf"></i> **Rasa Kunci:** Pahit & Manis Matcha</p>
-                </div>
-                <div class="influencer-visit">
-                    <p>**Pernah Dikunjungi:** <a href="#" target="_blank">@DessertHunter</a></p>
-                    <p><i class="fas fa-quote-left"></i> "*Hidden gem* yang sukses bikin *mood* naik drastis! *Must try*!"</p>
-                </div>
-                <button class="detail-button">Lihat Lokasi</button>
-            </div>
-            </article>
+                <div id="cards" class="cards-grid" aria-live="polite">
+                    <!-- Card 1 -->
+                    <article class="food-card" data-rating="4.8" data-name="Mie Legend Abadi" data-lokasi="Jl. Rasa Bahagia" tabindex="0">
+                        <div class="card-media">
+                            <img src="mie-legend.jpg" alt="Mie Legend Abadi - semangkuk mie dengan kuah" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Mie Legend Abadi</h3>
+                            <p class="meta"><strong>Lokasi:</strong> Jl. Rasa Bahagia No. 12 • <strong>Rating:</strong> 4.8/5</p>
+                            <p class="description">Kuah kaya rempah yang bikin nagih! Tekstur mie yang kenyal sempurna. Wajib coba.</p>
+                            <p class="badge">Rasa: Umami & Gurih Pedas</p>
 
-    </section>
+                            <div class="card-footer">
+                                <a href="#" class="link influencer" aria-label="Lihat profil influencer">Dikunjungi oleh @JagoMakanID</a>
+                                <div class="actions">
+                                    <button class="btn small map-open" data-lat="-" data-lng="-" data-title="Mie Legend Abadi">Lihat Lokasi</button>
+                                    <button class="btn small outline save-btn"><i class="fas fa-bookmark"></i> Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
 
-    <hr class="divider">
+                    <!-- Card 2 -->
+                    <article class="food-card" data-rating="4.5" data-name="Roti Bakar Nostalgia" data-lokasi="Gang Kopi Senja" tabindex="0">
+                        <div class="card-media">
+                            <img src="roti-bakar.jpg" alt="Roti Bakar Nostalgia 90an - potongan roti bakar dengan olesan butter" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Roti Bakar Nostalgia 90an</h3>
+                            <p class="meta"><strong>Lokasi:</strong> Gang Kopi Senja No. 5 • <strong>Rating:</strong> 4.5/5</p>
+                            <p class="description">Manis, lembut, dengan sentuhan butter yang meleleh — comfort food untuk nostalgia.</p>
+                            <p class="badge">Rasa: Manis & Smokey</p>
 
-    <section id="profil" class="profile-section">
-        <h2 class="section-title">👥 Siapa Kami: Dibalik Setiap Rekomendasi</h2>
-        <div class="profile-container">
-            <div class="profile-image">
-                <img src="placeholder-profil-reviewer.jpg" alt="Foto Profil Reviewer">
+                            <div class="card-footer">
+                                <a href="#" class="link influencer">Dikunjungi oleh @JelajahRasaEnak</a>
+                                <div class="actions">
+                                    <button class="btn small map-open" data-lat="-" data-lng="-" data-title="Roti Bakar Nostalgia 90an">Lihat Lokasi</button>
+                                    <button class="btn small outline save-btn"><i class="fas fa-bookmark"></i> Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="food-card" data-rating="4.9" data-name="Matcha Lava Toast" data-lokasi="Mall Foodcourt" tabindex="0">
+                        <div class="card-media">
+                            <img src="dessert-matcha.jpg" alt="Matcha Lava Toast - roti tart matcha dengan lelehan cokelat putih" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Matcha Lava Toast</h3>
+                            <p class="meta"><strong>Lokasi:</strong> Mall Foodcourt Lantai 3 • <strong>Rating:</strong> 4.9/5</p>
+                            <p class="description">Paduan matcha premium dan cokelat putih yang meleleh — sensasi dingin & manis.</p>
+                            <p class="badge">Rasa: Pahit & Manis Matcha</p>
+
+                            <div class="card-footer">
+                                <a href="#" class="link influencer">Dikunjungi oleh @DessertHunter</a>
+                                <div class="actions">
+                                    <button class="btn small map-open" data-lat="-" data-lng="-" data-title="Matcha Lava Toast">Lihat Lokasi</button>
+                                    <button class="btn small outline save-btn"><i class="fas fa-bookmark"></i> Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- More cards can be added similarly -->
+                </div>
+
             </div>
-            <div class="profile-content">
-                <h3>Visi Food Vibe Check</h3>
-                <p>Kami adalah tim pecinta kuliner yang berdedikasi untuk menemukan dan berbagi *vibe* makanan terbaik di kota Anda. Kami percaya bahwa makanan bukan hanya soal rasa, tapi juga soal suasana, cerita, dan momen yang diciptakan.</p>
-                
-                <h3>Kriteria Penilaian Kami</h3>
-                <ul>
-                    <li><i class="fas fa-utensils"></i> **Rasa Otentik:** Apakah hidangan memiliki ciri khas yang kuat dan konsisten?</li>
-                    <li><i class="fas fa-tree"></i> **Ambiance Tempat:** Bagaimana suasana tempat makan (kebersihan, desain, kenyamanan)?</li>
-                    <li><i class="fas fa-tags"></i> **Harga vs. Kualitas:** Apakah harga sesuai dengan kualitas dan porsi yang ditawarkan?</li>
-                </ul>
-                <p class="signature">Salam Vibe, <br> **Tim Food Vibe Check**</p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- PROFILE -->
+        <section id="profil" class="section profile">
+            <div class="container profile-inner">
+                <div class="profile-img">
+                    <img src="placeholder-profil-reviewer.jpg" alt="Foto tim Food Vibe Check" loading="lazy">
+                </div>
+                <div class="profile-content">
+                    <h2>👥 Siapa Kami</h2>
+                    <p>Kami adalah tim pecinta kuliner yang berdedikasi untuk menemukan & berbagi vibe terbaik. Rekomendasi kami berdasarkan pengalaman langsung, kriteria rasa, ambiance, dan value.</p>
+
+                    <h3>Kriteria Penilaian</h3>
+                    <ul>
+                        <li>Rasa otentik & konsistensi</li>
+                        <li>Ambiance: kebersihan, desain, kenyamanan</li>
+                        <li>Harga vs. kualitas</li>
+                    </ul>
+
+                    <p class="signature">Salam Vibe, <br><strong>Tim Food Vibe Check</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- MAP -->
+        <section id="lokasi" class="section map">
+            <div class="container">
+                <h2>📍 Peta Kuliner</h2>
+                <p class="map-note">Klik "Lihat Lokasi" pada kartu untuk membuka detail lokasi. Atau gunakan peta berikut (iframe Google Maps bisa Anda ganti dengan API key / embed code sendiri).</p>
+
+                <div class="map-embed" role="region" aria-label="Peta kuliner interaktif">
+                    <!-- Default placeholder iframe (ganti URL dengan embed maps anda) -->
+                    <iframe
+                        title="Peta Kuliner Food Vibe Check"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126915.123456789!2d106.7!3d-6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDEyJzAwLjAiTiAxMDZCwDQyJzAwLjAiRQ!5e0!3m2!1sid!2sid!4v1660000000000!5m2!1sid!2sid"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Map Detail -->
+    <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Detail lokasi">
+        <div class="modal-panel" role="document">
+            <button class="modal-close" aria-label="Tutup">&times;</button>
+            <div id="modal-content">
+                <!-- Filled by JS -->
+                <h3 id="modal-title">Lokasi</h3>
+                <div class="modal-body">
+                    <p id="modal-desc">Detail lokasi akan tampil di sini.</p>
+                    <div id="modal-map" class="modal-map">
+                        <!-- small iframe can be injected -->
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <hr class="divider">
-
-    <section id="lokasi" class="map-section">
-        <h2 class="section-title">📍 Peta Kuliner: Temukan Lokasi Terdekat</h2>
-        <p class="map-subtitle">Lihat semua tempat rekomendasi kami di peta interaktif. Klik pin untuk detail!</p>
-        
-        <div class="map-placeholder">
-            <i class="fas fa-map-marked-alt fa-3x"></i>
-            <p> [Google Maps Placeholder: Tempat Peta Kuliner Interaktif] </p>
-            <p> *Ganti dengan kode **iframe** embed Google Maps Anda.* </p>
+    <footer class="site-footer" role="contentinfo">
+        <div class="container footer-inner">
+            <p>&copy; <span id="year"></span> Food Vibe Check. Hak Cipta Dilindungi.</p>
+            <p class="small">Dibuat dengan <i class="fas fa-heart" aria-hidden="true"></i> untuk pecinta kuliner.</p>
         </div>
-        
-        <a href="#rekomendasi" class="map-list-button">Kembali ke Daftar Rekomendasi</a>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 Food Vibe Check. Hak Cipta Dilindungi.</p>
     </footer>
 
+    <!-- Minimal JS for interactions -->
+    <script>
+    // Utilities
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const navToggle = $('#nav-toggle');
+    const nav = $('#primary-nav');
+    navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('open');
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+            const targetId = a.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({behavior: 'smooth', block: 'start'});
+                // close nav on mobile
+                if (nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    });
+
+    // Dark mode toggle (persist in localStorage)
+    const darkToggle = $('#dark-toggle');
+    const userPref = localStorage.getItem('fv-dark') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? '1' : '0');
+    if (userPref === '1') document.documentElement.classList.add('dark');
+    darkToggle.setAttribute('aria-pressed', document.documentElement.classList.contains('dark'));
+    darkToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        darkToggle.setAttribute('aria-pressed', isDark);
+        localStorage.setItem('fv-dark', isDark ? '1' : '0');
+    });
+
+    // Search + filter
+    const cardsContainer = $('#cards');
+    const cardNodes = Array.from(cardsContainer.querySelectorAll('.food-card'));
+    const searchInput = $('#search');
+    const filterRating = $('#filter-rating');
+
+    function filterCards() {
+        const q = searchInput.value.trim().toLowerCase();
+        const minRating = parseFloat(filterRating.value);
+        cardNodes.forEach(card => {
+            const name = card.dataset.name.toLowerCase();
+            const lokasi = card.dataset.lokasi.toLowerCase();
+            const rating = parseFloat(card.dataset.rating) || 0;
+            const matchesQuery = !q || name.includes(q) || lokasi.includes(q) || card.querySelector('.badge').textContent.toLowerCase().includes(q);
+            const matchesRating = filterRating.value === 'all' || rating >= minRating;
+            if (matchesQuery && matchesRating) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    searchInput.addEventListener('input', filterCards);
+    filterRating.addEventListener('change', filterCards);
+
+    // Modal open for map details
+    const modal = $('#modal');
+    const modalTitle = $('#modal-title');
+    const modalDesc = $('#modal-desc');
+    const modalMap = $('#modal-map');
+    const mapButtons = $$('.map-open');
+    const modalClose = $('.modal-close');
+
+    mapButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const title = btn.dataset.title || 'Lokasi';
+            modalTitle.textContent = title;
+            modalDesc.textContent = 'Menampilkan lokasi: ' + title;
+            // Inject a small maps iframe (example). Replace with dynamic coords if available.
+            modalMap.innerHTML = '<iframe src="https://www.google.com/maps?q=' + encodeURIComponent(title) + '&output=embed" loading="lazy"></iframe>';
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            // focus trap simple
+            modal.querySelector('.modal-close').focus();
+        });
+    });
+
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Close modal on overlay click or ESC
+    modal.addEventListener('click', (ev) => {
+        if (ev.target === modal) {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    });
+    document.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape' && modal.classList.contains('open')) {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Save button mock (UI feedback)
+    $$('.save-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('saved');
+            btn.innerHTML = btn.classList.contains('saved') ? '<i class="fas fa-bookmark"></i> Disimpan' : '<i class="fas fa-bookmark"></i> Simpan';
+        });
+    });
+
+    // Basic accessibility: add focus visible for keyboard users (optional)
+    </script>
 </body>
 </html>
